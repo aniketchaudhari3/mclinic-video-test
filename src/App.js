@@ -36,7 +36,7 @@ function App() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("http://51.79.55.91:8030");
+    socket.current = io.connect("https://51.79.55.91:8030");
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
