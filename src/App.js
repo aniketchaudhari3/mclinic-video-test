@@ -59,26 +59,39 @@ function App() {
   }, []);
 
   function callPeer(id) {
+    const videoChatConfig = {
+      webSocketConnection:
+        'wss://95rgjs14sa.execute-api.ap-south-1.amazonaws.com/websocket',
+      turnServerIPAddress: '52.66.252.49',
+      turnServerPort: '3478',
+      turnServerUserName: 'turnadmin',
+      turnServerPassword: 'turnadmin',
+    }
     const peer = new Peer({
       initiator: true,
       trickle: false,
       config: {
-
         iceServers: [
-            {
-                urls: "stun:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
-            },
-            {
-                urls: "turn:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
-            }
-        ]
-    },
+          {
+            urls:
+              'stun:' +
+              videoChatConfig.turnServerIPAddress +
+              ':' +
+              videoChatConfig.turnServerPort,
+          },
+          {
+            urls:
+              'turn:' +
+              videoChatConfig.turnServerIPAddress +
+              ':' +
+              videoChatConfig.turnServerPort,
+            username: videoChatConfig.turnServerUserName,
+            credential: videoChatConfig.turnServerPassword,
+          },
+        ],
+      },
       stream: stream,
-    });
+    })
 
     peer.on("signal", data => {
       socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
