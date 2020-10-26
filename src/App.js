@@ -73,22 +73,16 @@ function App() {
       config: {
         iceServers: [
           {
-            urls:
-              'stun:' +
-              videoChatConfig.turnServerIPAddress +
-              ':' +
-              videoChatConfig.turnServerPort,
+            urls: "stun:numb.viagenie.ca",
+            username: "sultan1640@gmail.com",
+            credential: "98376683"
           },
           {
-            urls:
-              'turn:' +
-              videoChatConfig.turnServerIPAddress +
-              ':' +
-              videoChatConfig.turnServerPort,
-            username: videoChatConfig.turnServerUserName,
-            credential: videoChatConfig.turnServerPassword,
-          },
-        ],
+            urls: "turn:numb.viagenie.ca",
+            username: "sultan1640@gmail.com",
+            credential: "98376683"
+          }
+        ]
       },
       stream: stream,
     })
